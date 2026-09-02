@@ -1,4 +1,5 @@
 resource "aws_cloudwatch_log_group" "this" {
+  #checkov:skip=CKV_AWS_338: Some Systems store logs in cloudwatch as a temporary spot before ingestion into an aggregated area 
   count             = var.flowlogs.destination == "cloudwatch" ? 1 : 0
   name              = local.cloudwatch_log_group_name
   retention_in_days = var.flowlogs.retention_days
