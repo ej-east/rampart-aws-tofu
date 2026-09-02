@@ -41,8 +41,9 @@ locals {
 
   nat_subnet_via_az = { for az, g in local.azs_with_public : az => g.public[0] }
 
-  azs_with_private  = { for az, subnets in local.subnets_grouped_via_az : az => subnets if length(subnets.private) > 0 }
-  azs_with_public   = { for az, subnets in local.subnets_grouped_via_az : az => subnets if length(subnets.public) > 0 }
+  azs_with_private = { for az, subnets in local.subnets_grouped_via_az : az => subnets if length(subnets.private) > 0 }
+  azs_with_public  = { for az, subnets in local.subnets_grouped_via_az : az => subnets if length(subnets.public) > 0 }
+  # tflint-ignore: terraform_unused_declarations
   azs_with_isolated = { for az, subnets in local.subnets_grouped_via_az : az => subnets if length(subnets.isolated) > 0 }
 
   endpoint_subnet_via_az = { for az, g in local.subnets_grouped_via_az : az => length(g.private) > 0 ? g.private[0] : g.isolated[0] if length(g.private) > 0 || length(g.isolated) > 0 }
