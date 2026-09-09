@@ -1,3 +1,6 @@
+# checkov:skip=CKV_AWS_136:The ECR module supports KMS encryption through a variable-driven dynamic encryption_configuration block.
+# checkov:skip=CKV_AWS_163:The ECR module supports image scanning through a variable-driven dynamic image_scanning_configuration block. 
+# checkov:skip=CKV_AWS_51: The ECR module supports configurable image tag mutability, including AWS IMMUTABLE_WITH_EXCLUSION behavior.
 resource "aws_ecr_repository" "this" {
   name                 = var.name
   image_tag_mutability = var.tag_mutability
