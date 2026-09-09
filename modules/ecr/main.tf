@@ -1,4 +1,7 @@
 resource "aws_ecr_repository" "this" {
+  #checkov:skip=CKV_AWS_136: KMS encryption is variable-driven via a dynamic encryption_configuration block
+  #checkov:skip=CKV_AWS_163: Scan on push is variable-driven via a dynamic image_scanning_configuration block
+  #checkov:skip=CKV_AWS_51: Tag mutability is variable-driven and supports IMMUTABLE_WITH_EXCLUSION, which checkov does not recognize
   name                 = var.name
   image_tag_mutability = var.tag_mutability
   force_delete         = var.force_delete
